@@ -7,8 +7,7 @@ import com.generation.aziendecondipendenti.model.mappers.AziendaMapper;
 import com.generation.aziendecondipendenti.model.services.AziendaService;
 import com.generation.aziendecondipendenti.model.services.DipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +54,13 @@ public class ControllerProva
 	public DipendeteConNomeAziendaDto getDipendenteAziendaDto()
 	{
 		return ds.getDipendenteNomeAziendaDtoById(1L);
+	}
+
+	//con @RequestBody convertiamo JSON in DTO, poi usiamo servizio
+	//per salvarlo nel db dopo averlo convertito in entità
+	@PostMapping("/salvaDipendente")
+	public void salva(@RequestBody DipendenteCreazioneDto dto)
+	{
+		ds.salvaDipendente(dto);
 	}
 }
