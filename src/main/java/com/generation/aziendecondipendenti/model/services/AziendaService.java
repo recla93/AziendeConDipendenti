@@ -3,6 +3,7 @@ package com.generation.aziendecondipendenti.model.services;
 import com.generation.aziendecondipendenti.model.dao.AziendaDao;
 import com.generation.aziendecondipendenti.model.dto.AziendaReservedDto;
 import com.generation.aziendecondipendenti.model.dto.AziendaSummaryDto;
+import com.generation.aziendecondipendenti.model.dto.AziendawDipendentiDto;
 import com.generation.aziendecondipendenti.model.entities.Azienda;
 import com.generation.aziendecondipendenti.model.mappers.AziendaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,14 @@ public class AziendaService
 		if(a==null)
 			return null;
 		return mapper.toSummaryDto(a);
+	}
+
+	public AziendawDipendentiDto getAziendawDipendentiDtoById(Long id)
+	{
+		Azienda a = dao.findById(id).orElse(null);
+		if(a==null)
+			return null;
+		return mapper.toAziendaDipendentiDto(a);
 	}
 
 
